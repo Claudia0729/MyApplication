@@ -13,6 +13,7 @@ fun main(){
 
     val name = "Claudia"
     println(name.get(0))
+    println(name)
 }
 
 // 可使用Template快速樣本 迅速產生main function -> 先打main，按下tab自動產生main function
