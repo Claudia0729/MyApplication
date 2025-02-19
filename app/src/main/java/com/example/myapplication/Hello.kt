@@ -9,6 +9,7 @@ fun main(){
     //另類的Hello World-> 使用Person類別
     //將一個檔案裏面的類別(Person.類別)給生出來
     //使用類別名稱加小括號(Person())就可以來找這個檔案，並在記憶體內建立起來
+    //people就是Person類別所產生的物件
     val people = Person()
     people.Hello() //people建立後會留下記憶體的住址，因此未來要尋找Person物件時，就使用people來呼叫所設計的Hello方法
 
