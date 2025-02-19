@@ -6,6 +6,14 @@ class Hello {
 
 //第一層 First Label，也為程式的執行點(進入點)Main Function
 fun main(){
+    //將一個檔案裏面的類別(Person.類別)給生出來
+    //使用類別名稱加小括號(Person())就可以來找這個檔案，並在記憶體內建立起來
+    val people = Person()
+    people.Hello() //people建立後會留下記憶體的住址，因此未來要尋找Person物件時，就使用people來呼叫所設計的Hello方法
+
+
+
+
     println("Hello Kotlin!")
     val age = 20 //就算年齡是2或20等小的數字，還是盡量使用int來標示，不用特意使用到Short/Byte來表示
     println(age.inc()) //值+1 但不影響本身的age值
