@@ -14,7 +14,7 @@ class Person constructor(val name:String ,val w:Float,val h:Float){
     }
 
     fun Hello(){
-        println("Hello I'm Claudia")
+        System.out.println("Hello I'm Claudia")
     }
 
 }
