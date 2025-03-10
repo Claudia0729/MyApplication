@@ -12,7 +12,27 @@ fun main() {
 
     //現在是希望程式可以使用亂數給出一個介於1-10的數值 可從println(Random.nextInt())小括號內，按ctrl+P(Parameter 參數)-> 顯示參數用法
     //這裡的until:10 -> 不包含10，1到10要用逗點來間隔
-    println(Random.nextInt(1,11)) //若ctrl+P還是不懂，那可使用ctrl+Q來顯示參數簡易說明。若要更複雜的文件，可按ctrl+QQ
-    println((1..10).random()) //這種會是比較好的取得亂數的寫法，先將一個range寫好，range的左右邊用括號刮起來，直接.裡面就會有random的方法。
+    //println(Random.nextInt(1,11)) //若ctrl+P還是不懂，那可使用ctrl+Q來顯示參數簡易說明。若要更複雜的文件，可按ctrl+QQ
+    //println((1..10).random()) //這種會是比較好的取得亂數的寫法，先將一個range寫好，range的左右邊用括號刮起來，直接.裡面就會有random的方法。
+
+    val secret = (1..10).random()
+    println("secret: $secret")
+    var num:Int = 0
+    while ( num != secret ){
+        println("Please enter a number(1-10): ")
+        val input = readLine()
+        num = input?.toIntOrNull() ?: 0
+        println("The number you enter is $num")
+
+        if ( num < secret ){
+            println("Please enter a bigger number!")
+        }
+        else if ( num > secret ){
+            println("Please enter a smaller number!")
+        }
+        else{
+            println("You got it!!")
+        }
+    }
 
 }

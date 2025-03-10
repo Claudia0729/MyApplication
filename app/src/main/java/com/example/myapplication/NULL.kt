@@ -3,7 +3,7 @@ package com.example.myapplication
 fun main() {
 
     var name:String? = "Claudia"
-    // name = null 此行指令是錯誤的 因為先簽name的資料型態已被定義為String(Non-Null 不可為空值)
+    // name = null 此行指令是錯誤的 因為先前name的資料型態已被定義為String(Non-Null 不可為空值)
     //若要定義為可以為NULL的資料型態 則要在資料型態後面加上?
     //name = null // 因此程式碼會允許為Null，因此此變數可以是NULL 也可以不是NUll
 

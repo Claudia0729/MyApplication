@@ -10,7 +10,7 @@ fun main() {
 
     //由於此處的input可能為Null，在日後拿來運算(數值的比較)前，需先進行檢查
     //val num = input?.toInt() //input.toInt() 在.前加一個問號，讓他可以轉型。但還是會有個問題
-    //13行，當input不為null，就轉成Int。但若input為Null，會得到Null。但這樣不太符合要使用的方式 因為我們會希望num:Int 也布希可能是Null
+    //13行，當input不為null，就轉成Int。但若input為Null，會得到Null。但這樣不太符合要使用的方式 因為我們會希望num:Int 也不希可能是Null
 
     //?:左邊如果是Null，就給右邊的值。 左邊如果不為Null，就給左邊的值(進行Int轉換)
     val num:Int = input?.toIntOrNull() ?: 0

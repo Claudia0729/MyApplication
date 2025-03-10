@@ -4,7 +4,7 @@ package com.example.myapplication
 //不太會建議在while條件裡面使用true。
 fun main() {
     val secret = 7
-    var num:Int = 0 //在while迴圈外宣告num，解結變數生存空間的問題。此時迴圈內外皆有num的變數，是可行的，只是兩個同名的人。
+    var num:Int = 0 //在while迴圈外宣告num，來解決變數生存空間的問題。此時迴圈內外皆有num的變數，是可行的，只是兩個同名的人。
     while ( num != secret ){ //在未將num在外面宣告前，因為num(區域型變數)是定義在while回圈內的括號區塊，因此num的生存空間(變數生存空間 Scope)就會停留在while大括號裡面
         println("Please enter a number(1-10): ")
         val input = readLine()
@@ -20,7 +20,7 @@ fun main() {
         }
         else {
             println("You got it!")
-            //break //break: 跳出最近的迴圈區塊
+            //break //break: 跳出目前最近的迴圈區塊
         }
     }
 }
