@@ -11,10 +11,10 @@ fun main(){
     //使用類別名稱加小括號(Person())就可以來找這個檔案，並在記憶體內建立起來
     //people就是Person類別所產生的物件
     val people = Person( "Claudai",52.3f, 1.56f )
-    System.out.println( people.name + " " + people.bmi())
+    println( people.name + " " + people.bmi())
 
     val jason = Person( "Jason",73.4f, 1.70f)
-    System.out.println(jason.name + " " + jason.bmi())
+    println(jason.name + " " + jason.bmi())
     people.Hello() //people建立後會留下記憶體的住址，因此未來要尋找Person物件時，就使用people來呼叫所設計的Hello方法
 
     //將bmi的w和h的值送進Person物件的內容裡，Person的身體裡面就會針對給的值做運算
