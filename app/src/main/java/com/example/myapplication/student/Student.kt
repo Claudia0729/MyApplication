@@ -21,6 +21,6 @@ class Student constructor (val id:String, val name:String, var eng: Int, var mat
 fun main() {//上面類別建立好之後，在建立下一個學生時，若不知道要寫那些東西，可以用ctrl+P看
     val me = Student("10160154", "Claudia", 85, 60) //產生一個建構子
     val he = Student("10160254", "Cloud", 80, 80 )
-    val she = Student("10160254","cherry")//若沒有寫英數成績，就是直接給0。(設計為了不要寫了學號名字，後面又寫0)
+    val she = Student("10160254","cherry")//若沒有寫英數成績，就是直接給0(因此只需要傳入兩個參數)。(設計為了不要寫了學號名字，後面又寫0)
     me.print()
 }
