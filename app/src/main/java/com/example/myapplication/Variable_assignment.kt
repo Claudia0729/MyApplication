@@ -5,10 +5,10 @@ class Variable_assignment {
 }
 
 fun main() {
-    System.out.println("Hello world!")
+    println("Hello world!")
     val age = 20
     //println(age.inc())
     //println(age)
     //Thread.sleep(100)
-    System.out.println(age.inc())
+    println(age.inc())
 }
