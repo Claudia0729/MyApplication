@@ -9,7 +9,7 @@ open class Student_Conpanion_object constructor (val id:String, val name:String,
         val mark = if (average()< pass) "*" else " "
         println("$id\t$name\t$eng\t$math\t${average()}$mark\t${gradle()}")
     }
-    fun average() = (eng + math) / 2
+    internal fun average() = (eng + math) / 2
     fun gradle() = when (average() / 10) {//簡化後，直接讓方法等於when的運篹
         9, 10 -> "A"
         8 -> "B"
