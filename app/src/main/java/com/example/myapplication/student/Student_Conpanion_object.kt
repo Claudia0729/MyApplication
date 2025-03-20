@@ -1,11 +1,11 @@
 package com.example.myapplication
 //類別層級的屬性 Companion object: 用來定義類別層級的變數與用法。希望能夠讓好幾個物件共用一個變數，常用於物件導向或程式設計內的Static。
 //Static在Kotlin程式語言中，稱為Companion Object
-class Student_Conpanion_object constructor (val id:String, val name:String, var eng: Int = 0, var math: Int = 0 ) {
+open class Student_Conpanion_object constructor (val id:String, val name:String, var eng: Int = 0, var math: Int = 0 ) {
     companion object{//如夥伴/伴侶/陪同的意思(陪伴型物件)
         var pass = 60 //加入companion object後的student list屬性中，還未有pass的值出現，可用debug看
     }
-    fun print() {
+    open fun print() {
         val mark = if (average()< pass) "*" else " "
         println("$id\t$name\t$eng\t$math\t${average()}$mark\t${gradle()}")
     }
