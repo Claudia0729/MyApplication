@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">My Application</string>
     <string name="finish">完成</string>
+    <string name="enter_weight">Please enter your weight number</string>
 </resources>

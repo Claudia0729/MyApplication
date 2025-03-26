@@ -20,7 +20,7 @@ class Main2Activity : AppCompatActivity() {
         當城市中有使用到R，表示R會自動掃描專案內的res資料夾
         */
         setContentView(R.layout.activity_main2)
-        R.id.hello_world /*在activity_main2.xml檔中設定id名稱(一般使用小寫)，可直接在onCreate方法內
+        /*R.id.hello_world 在activity_main2.xml檔中設定id名稱(一般使用小寫)，可直接在onCreate方法內
         打R.id.(id名稱)此時的hello_world會回傳一個int(整數)，是因為res資料夾內的資料被掃瞄到後，都會配置一個
         不會重複的int的值，如此就可存取到res的值了
         */
