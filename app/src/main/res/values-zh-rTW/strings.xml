@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="finish">完成</string>
+    <string name="please_enter_tour_weight">請輸入您的體重</string>
+    <string name="enter">輸入</string>
+    <string name="you_are_to_soft">您過輕了</string>
+    <string name="you_are_so_strong">您過重了</string>
+    <string name="your_weight_is_just_right">您的體重剛剛好</string>
+    <string name="average_weight">平均體重</string>
+    <string name="ok">確認</string>
+    <string name="please_enter_your_weight_number">請輸入您的體重數字</string>
+    <string name="enter_weight">請輸入您的體重</string>
+</resources>

@@ -1,5 +1,13 @@
 <resources>
     <string name="app_name">My Application</string>
     <string name="finish">完成</string>
-    <string name="enter_weight">Please enter your weight number</string>
+    <string name="please_enter_tour_weight">Please enter tour weight:</string>
+    <string name="enter">Enter</string>
+    <string name="you_are_to_soft">You are to soft!</string>
+    <string name="you_are_so_strong">You are so strong!</string>
+    <string name="your_weight_is_just_right">Your weight is just right!</string>
+    <string name="average_weight">Average weight</string>
+    <string name="ok">OK</string>
+    <string name="please_enter_your_weight_number">Please enter your weight number!</string>
+    <string name="enter_weight">enter_weight</string>
 </resources>
