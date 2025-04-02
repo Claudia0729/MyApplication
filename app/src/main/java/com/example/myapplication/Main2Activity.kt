@@ -12,21 +12,16 @@ import com.example.myapplication.databinding.ActivityMain2Binding
 
 class Main2Activity : AppCompatActivity() {
     private lateinit var binding: ActivityMain2Binding
-    val average = (55..70).random()
+    val game = GuessGame_物件導向()//直接改成從類別檔中獲取這個average整數值
+    //val average = (55..70).random()
     //方法寫在類別裡的第一層
     fun enter(view:View){
         if ( !binding.weight.text.toString().equals("")){
             val weight = binding.weight.text.toString().toInt()
-            Log.d("Main2Activity", weight.toString())
-
-            val message = if( weight <average){
-                getString(R.string.you_are_to_soft)//原型為:resources.getString(R.stirng.you_are_to_soft)
-            }
-            else if( weight > average){
-                getString(R.string.you_are_so_strong)
-            }
-            else{
-                getString(R.string.your_weight_is_just_right)
+            val message = when(game.differ(weight)){
+                GuessGame_物件導向.Status.SMALLER -> getString(R.string.you_are_so_strong)
+                GuessGame_物件導向.Status.BIGGER -> getString(R.string.you_are_to_soft)
+                else -> getString(R.string.your_weight_is_just_right)
             }
             //對話框的類別，使用類別中的Builder可建立一個快速使用的對話框。Bulider.後面是指對話框的Title的名字，可繼續.看要set哪些訊息。
             AlertDialog.Builder(this).setTitle(getString(R.string.average_weight))
@@ -46,8 +41,8 @@ class Main2Activity : AppCompatActivity() {
         enableEdgeToEdge()
         binding = ActivityMain2Binding.inflate(layoutInflater)
         setContentView(binding.root)
-        //顯示目前的隨機平均體重
-        Toast.makeText(this,"average weight:$average",Toast.LENGTH_LONG).show()
+        //顯示目前的隨機平均體重，直接使用game從類別檔拿到數字
+        Toast.makeText(this,"average weight:${game.average}",Toast.LENGTH_LONG).show()
         //R.drawable.instagram
         //R.string.finish
 

@@ -15,19 +15,19 @@ class GuessGame_物件導向 {//先設計好常用的類別，在main方法裡�
     }
     val status = Status.INIT //定義一個屬性狀態的初始值
     //希望透過GuessGame_物件導向這個類別，ˋ己產生一個祕密數字
-    var secret = Random.nextInt(1,11)//未來這個secret是可以重複一直玩的
+    var average = Random.nextInt(55,100)//未來這個secret是可以重複一直玩的
     var counter = 0 //猜了幾次
     //由於使用者會傳一個整數，因此()內會放一個變數num
     fun differ( num:Int ): Status{//希望在未來可以透過使用者輸入後，使用這個differ的方法，來看使用者輸入和秘密數字是否一樣
         //4/2更改回傳一個狀態
         counter ++
-        return if( num > secret ) Status.SMALLER
-        else if( num < secret ) Status.BIGGER
+        return if( num > average ) Status.SMALLER
+        else if( num < average ) Status.BIGGER
         else Status.BINGO
         //return secret - num
     }
     fun reset(){//若return回來的值為0，那遊戲就可以重新開始
-        secret = Random.nextInt(1,11)
+        average = Random.nextInt(1,11)
         counter = 0
     }
 }
