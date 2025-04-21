@@ -10,7 +10,7 @@ import kotlin.random.Random
  */
 class GuessGame_物件導向 {//先設計好常用的類別，在main方法裡面使用少數程式，往後若需要更改程式的過程，會比較方便。
     //Enumeration 列舉-> 在定義狀態時，大部分會使用大寫字
-    enum class Status{//設計一個類別，讓類別身上有種列舉資訊
+    enum class Status{//設計一個類別，讓類別身上有多種列舉資訊
         INIT,BIGGER,SMALLER,BINGO
     }
     val status = Status.INIT //定義一個屬性狀態的初始值

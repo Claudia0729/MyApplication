@@ -14,6 +14,7 @@ fun main() {
     val s = "12345"
     println(s.validate())//透過擴充出來的validate方法，在字串上面進行使用。
 
+    //使用Drinks類別產生物件
     var tea = Drink("Black tea", 50, 30)
     println(tea)/*此時的print印出來會是一個類別的參照資料型態(com.example.myapplication.vending.Drink@7e0ea639)
     參照資料型態即為"物件的資訊"，並沒有將tea物件的東西印出來。因此可能還需要在Drink.kt裡進行覆寫

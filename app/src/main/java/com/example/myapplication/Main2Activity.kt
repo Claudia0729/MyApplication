@@ -11,9 +11,11 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.ViewModelProvider
 import com.example.myapplication.databinding.ActivityMain2Binding
 
 class Main2Activity : AppCompatActivity() {
+    private lateinit var viewModel: WeightViewModel //把viewModel抽取出去變成屬性，而非原本的區域變數。同時也用為lateinit，晚一點再去onCreate宣告
     val TAG = Main2Activity::class.java.simpleName//由於使用log時，參數都需使用到類別名稱，為了更簡潔，直接在最前面定義一個TAG = 類別的簡單名稱(類別名稱)。全名是加上package那串。
     private lateinit var binding: ActivityMain2Binding//當在xml裡面有新增新元件的時候，可能會因為使用了binding所以會反紅色，就要到Build->Rebuild Project(重新編譯)
     val game = GuessGame_物件導向()//直接改成從類別檔中獲取這個average整數值
@@ -38,8 +40,13 @@ class Main2Activity : AppCompatActivity() {
             //對話框的類別，使用類別中的Builder可建立一個快速使用的對話框。Bulider.後面是指對話框的Title的名字，可繼續.看要set哪些訊息。
             AlertDialog.Builder(this).setTitle(getString(R.string.average_weight))
                 .setMessage(message)
-                .setPositiveButton(getString(R.string.ok),null)//因ok不用做事所以就寫null，要的話要寫okListener
-                .show() //經過31-35行的動作，okListener才能正確被使用
+                .setPositiveButton(getString(R.string.ok),null)
+                .setNegativeButton("Replay" ){
+                    dialog, which -> Log.d(TAG,  "Replay")
+                }
+                .show()
+                //因ok不用做事所以就寫null，要的話要寫okListener
+                //經過31-35行的動作，okListener才能正確被使用
                 /*Lambda語法: 為了解決繁雜的匿名類別而推出的語法
                 setNegativeButton("Replay", { 將okListener的兩個參數寫在大括號內
                     dialog, which -> Log.d(TAG, msg:"Replay")(which:按下哪一個按鈕)
@@ -64,6 +71,11 @@ class Main2Activity : AppCompatActivity() {
         enableEdgeToEdge()
         binding = ActivityMain2Binding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        //做完畫面之後進行取得ViewModel物件，使用ViewModelProvider類別產生viewModel
+        //因為Provider的建構子要寫擁有者，ViewModel負責的是Main2Activity，因此直接寫this就好
+        viewModel = ViewModelProvider(this).get(WeightViewModel ::class.java)
+        //把val刪掉，按Alt+enter，選Create Property ViewModel
         //顯示目前的隨機平均體重，直接使用game從類別檔拿到數字
         Toast.makeText(this,"average weight:${game.average}",Toast.LENGTH_LONG).show()
         //R.drawable.instagram

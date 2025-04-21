@@ -19,7 +19,7 @@ fun main() {
     */
     while ( line != null) {
         println(line)
-        //使用line字串中的split方法，且我中間的切割字眼是"逗點"，tokens會是一個陣列，tokens[0]...
+        //使用line字串中的split方法，且中間的切割字眼是"逗點"，tokens會是一個陣列，tokens[0]...
         val tokens = line.split(",")//將Black tea,0,50拆解(切割)成一個一個部分(token)
         val drink = Drink(tokens[0], tokens[1].toInt(), tokens[2].toInt())
         drinks.add(drink)
