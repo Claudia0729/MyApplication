@@ -21,8 +21,8 @@ class GuessGame_物件導向 {//先設計好常用的類別，在main方法裡�
     fun differ( num:Int ): Status{//希望在未來可以透過使用者輸入後，使用這個differ的方法，來看使用者輸入和秘密數字是否一樣
         //4/2更改回傳一個狀態
         counter ++
-        return if( num > average ) Status.SMALLER
-        else if( num < average ) Status.BIGGER
+        return if( num > average ) Status.BIGGER
+        else if( num < average ) Status.SMALLER
         else Status.BINGO
         //return secret - num
     }
