@@ -32,13 +32,36 @@ class Main2Activity : AppCompatActivity() {
         viewModel = ViewModelProvider(this).get(WeightViewModel ::class.java)
         //把val刪掉，按Alt+enter，選Create Property ViewModel
         //Observe是一個介面，因此要放入符合介面的家族物件(使用Lambda語法)。只要counter一有變動，就到大括號裡面執行
-        viewModel.counter.observe(this, Observer { counter ->
+        viewModel.counter.observe(this) { counter ->
             binding.counter.text = counter.toString()//counter就會變動了
-        } )
-        //顯示目前的隨機平均體重，直接使用game從類別檔拿到數字
-        Toast.makeText(this,"average weight:${game.average}",Toast.LENGTH_LONG).show()
-        //R.drawable.instagram
-        //R.string.finish
+        }
+        viewModel.status.observe(this) { status ->
+            val message = when (status){
+                GameStatus.BIGGER -> getString(R.string.you_are_to_soft)
+                GameStatus.SMALLER -> getString(R.string.you_are_so_strong)
+                GameStatus.INIT -> "" //初始化的時候就給空字串
+                else -> getString(R.string.your_weight_is_just_right)
+            }
+            if( status != GameStatus.INIT){
+                AlertDialog.Builder(this).setTitle(getString(R.string.average_weight))
+                    .setMessage(message)
+                    .setPositiveButton(getString(R.string.ok),null)
+                    .setNegativeButton("Replay" ){
+                            dialog, which -> Log.d(TAG,  "Replay")
+                        viewModel.reset()
+                        //binding.counter.text = game.counter.toString()
+                        binding.weight.setText("")//輸入方塊清空
+                    }
+                    .show()
+            }
+        }
+        viewModel.averageData.observe(this) { average ->
+            //顯示目前的隨機平均體重，直接使用game從類別檔拿到數字
+            Toast.makeText(this,"average weight:$average",Toast.LENGTH_LONG).show()
+            //R.drawable.instagram
+            //R.string.finish
+        }
+
 
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
