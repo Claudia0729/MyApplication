@@ -1,6 +1,7 @@
 package com.example.myapplication
 import android.content.DialogInterface
 import android.content.DialogInterface.OnClickListener
+import android.content.Intent
 import android.nfc.Tag
 import android.os.Bundle
 import android.util.Log
@@ -61,9 +62,6 @@ class Main2Activity : AppCompatActivity() {
             //R.drawable.instagram
             //R.string.finish
         }
-
-
-
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -72,7 +70,8 @@ class Main2Activity : AppCompatActivity() {
     }
     //方法寫在類別裡的第一層
     fun enter(view:View){
-        viewModel.input(binding.weight.text.toString().toInt())//透過input方法，把weight值傳到voewmodel裡面
+        viewModel.input(binding.weight.text.toString().toInt())//透過input方法，把weight值傳到viewmodel裡面
+
         /*
         if ( !binding.weight.text.toString().equals("")){
             val weight = binding.weight.text.toString().toInt()
@@ -118,5 +117,8 @@ class Main2Activity : AppCompatActivity() {
         }
         */
     }
-
+    fun setNickname(view: View){//轉換到另一個Activity的畫面，使用Intent類別
+        val intent = Intent(this, NicknameActivity :: class.java)
+        startActivity(intent)
+    }
 }

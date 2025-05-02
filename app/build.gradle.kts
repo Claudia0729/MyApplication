@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     //確認有Kotlin的Kapt外掛
     id("kotlin-kapt")
+    //alias(libs.plugins.kotlin.kotlin-kapt)
 }
 
 android {
