@@ -1,4 +1,5 @@
 package com.example.myapplication
+import android.app.ComponentCaller
 import android.content.DialogInterface
 import android.content.DialogInterface.OnClickListener
 import android.content.Intent
@@ -8,22 +9,40 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.material3.AlertDialogDefaults
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.room.Room
+import com.example.myapplication.data.Record
+import com.example.myapplication.data.RecordDatabase
 import com.example.myapplication.databinding.ActivityMain2Binding
 
 class Main2Activity : AppCompatActivity() {
+    private val NICKNAME_REQ: Int = 20
     private lateinit var viewModel: WeightViewModel //把viewModel抽取出去變成屬性，而非原本的區域變數。同時也用為lateinit，晚一點再去onCreate宣告
     val TAG = Main2Activity::class.java.simpleName//由於使用log時，參數都需使用到類別名稱，為了更簡潔，直接在最前面定義一個TAG = 類別的簡單名稱(類別名稱)。全名是加上package那串。
     private lateinit var binding: ActivityMain2Binding//當在xml裡面有新增新元件的時候，可能會因為使用了binding所以會反紅色，就要到Build->Rebuild Project(重新編譯)
     val game = GuessGame_物件導向()//直接改成從類別檔中獲取這個average整數值
+    val requestNickname = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()){ result ->
+        val nickname = getSharedPreferences("weight", MODE_PRIVATE)
+            .getString("nickname", null)
+        Log.d(TAG, "Data: $nickname")
+        if ( result.resultCode == RESULT_OK ){
+            val nickname = result.data?.getStringExtra("name")
+            Log.d(TAG, "$Result: $nickname")
+        }
+    }
+
     //val average = (55..70).random()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)//初始值的設定
+        Log.d(TAG, "onCreate: ")
         enableEdgeToEdge()
         binding = ActivityMain2Binding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -67,6 +86,14 @@ class Main2Activity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        //Room test
+        //產生資料庫物件，最後要記得呼叫build()才能得到RecordDatabase
+        val database = Room.databaseBuilder(this,
+            RecordDatabase::class.java, " data.db")
+            .build()
+        val record = Record("Sam", 3)
+        database.recordDao().insert(record)
     }
     //方法寫在類別裡的第一層
     fun enter(view:View){
@@ -119,6 +146,59 @@ class Main2Activity : AppCompatActivity() {
     }
     fun setNickname(view: View){//轉換到另一個Activity的畫面，使用Intent類別
         val intent = Intent(this, NicknameActivity :: class.java)
-        startActivity(intent)
+        intent.putExtra("Weight_Value", 50)
+        intent.putExtra("User_NAME", "Claudia")
+        //startActivity(intent)
+        //startActivityForResult(intent, NICKNAME_REQ)
+        requestNickname.launch(intent)
+        //Scope functions 區域範圍功能
+        Intent(this, NicknameActivity::class.java).apply {
+            putExtra("weight", 4)
+            putExtra("name", "Tom")
+        }.also {
+            requestNickname.launch(intent)
+        }
+        //requestNickname.launch(intent)
+    }
+
+    //覆寫父類別所寫的onActivityResult -> 快捷鍵 ctrl+O
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?, caller: ComponentCaller) {
+        super.onActivityResult(requestCode, resultCode, data, caller)
+        //取得nickname的值
+        if ( resultCode == NICKNAME_REQ){
+            Log.d(TAG, "onActivityResult: $resultCode")
+        }
+        val nickname = data?.getStringExtra("name")
+        Log.d(TAG, "onActivityResult: $nickname")
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Log.d(TAG, "onStart: ")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d(TAG, "onStop: ")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d(TAG, "onDestroy: ")
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        Log.d(TAG, "onRestart: ")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d(TAG, "onResume: ")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d(TAG, "onPause: ")
     }
 }

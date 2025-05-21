@@ -1,11 +1,18 @@
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    //alias(libs.plugins.compose.compiler)
     //確認有Kotlin的Kapt外掛
     id("kotlin-kapt")
-    //alias(libs.plugins.kotlin.kotlin-kapt)
+    id("org.jetbrains.compose") // ✅ 正確的 Compose plugin ID
 }
-
+tasks.register("testClasses") {
+    // No-op to prevent "task not found" errors from plugins/CI
+    doLast {
+        println("⚠️ Skipped dummy testClasses task for Android project")
+    }
+}
 android {
     namespace = "com.example.myapplication"
     compileSdk = 35
@@ -44,7 +51,7 @@ android {
         viewBinding = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.10"
     }
     packaging {
         resources {
@@ -56,7 +63,6 @@ android {
 dependencies {
 
     val lifecycle_version = "2.8.7"
-
     // ViewModel
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
     // LiveData
@@ -64,6 +70,13 @@ dependencies {
     // Annotation processor
     kapt("androidx.lifecycle:lifecycle-compiler:$lifecycle_version")
 
+    val room_version = "2.7.1"
+    //Room
+    implementation("androidx.room:room-runtime:$room_version")
+    //kapt
+    kapt("androidx.room:room-compiler:$room_version")
+
+    //implementation("org.jetbrains.kotlin:kotlin-stdlib:2.1.10")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)

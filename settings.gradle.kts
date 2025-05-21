@@ -9,9 +9,11 @@ pluginManagement {
         }
         mavenCentral()
         gradlePluginPortal()
+        maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
     }
     plugins {
         kotlin("jvm") version "2.0.0"
+        id("org.jetbrains.compose") version "1.6.10"
     }
 }
 plugins {
@@ -25,6 +27,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "My Application"
+rootProject.name = "MyApplication"
 include(":app")
  
